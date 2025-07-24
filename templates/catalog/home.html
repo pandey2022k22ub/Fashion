@@ -1,0 +1,415 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Chaze Fashion - Exclusive Designer Collections{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <!-- Background Video/Image -->
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-r from-dark-900/70 via-dark-900/50 to-transparent z-10"></div>
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+             alt="Fashion Hero" 
+             class="w-full h-full object-cover scale-105 animate-slow-zoom">
+    </div>
+    
+    <!-- Hero Content -->
+    <div class="relative z-20 text-center text-white px-4 max-w-4xl mx-auto">
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 animate-slide-up">
+            Exclusive
+            <span class="block text-brand-400 italic">Designer</span>
+            Collections
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-gray-200 font-light animate-slide-up animation-delay-200">
+            Discover the pinnacle of fashion with our curated selection of luxury pieces
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up animation-delay-400">
+            <a href="{% url 'catalog:products' %}" 
+               class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                Explore Collections
+            </a>
+            <a href="#featured" 
+               class="border-2 border-white text-white hover:bg-white hover:text-dark-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105">
+                See Featured
+            </a>
+        </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+        <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+            <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Collections -->
+<section id="featured" class="py-24 bg-gray-50 dark:bg-dark-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-dark-900 dark:text-white mb-4">
+                Featured Collections
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Handpicked pieces that define contemporary luxury and timeless elegance
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Collection Card 1 -->
+            <div class="group relative overflow-hidden rounded-2xl bg-white dark:bg-dark-700 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div class="aspect-w-4 aspect-h-5 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Summer Elegance" 
+                         class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 class="text-2xl font-serif font-bold mb-2">Summer Elegance</h3>
+                    <p class="text-gray-200 mb-4">Lightweight fabrics meet sophisticated design</p>
+                    <button class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors duration-200">
+                        Explore Collection
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Collection Card 2 -->
+            <div class="group relative overflow-hidden rounded-2xl bg-white dark:bg-dark-700 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div class="aspect-w-4 aspect-h-5 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Urban Chic" 
+                         class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 class="text-2xl font-serif font-bold mb-2">Urban Chic</h3>
+                    <p class="text-gray-200 mb-4">Modern streetwear with luxury touches</p>
+                    <button class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors duration-200">
+                        Explore Collection
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Collection Card 3 -->
+            <div class="group relative overflow-hidden rounded-2xl bg-white dark:bg-dark-700 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div class="aspect-w-4 aspect-h-5 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Evening Glamour" 
+                         class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 class="text-2xl font-serif font-bold mb-2">Evening Glamour</h3>
+                    <p class="text-gray-200 mb-4">Sophisticated pieces for special occasions</p>
+                    <button class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors duration-200">
+                        Explore Collection
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Best Sellers -->
+<section class="py-24 bg-white dark:bg-dark-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-serif font-bold text-dark-900 dark:text-white mb-4">
+                Best Sellers
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300">
+                Our most loved pieces, chosen by fashion enthusiasts worldwide
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Product Card 1 -->
+            <div class="group bg-white dark:bg-dark-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1564584217132-2271339881b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Designer Dress" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-4 right-4">
+                        <button class="w-10 h-10 bg-white/90 dark:bg-dark-800/90 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors duration-200">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="absolute inset-0 bg-dark-900/0 group-hover:bg-dark-900/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <button class="bg-white text-dark-900 px-6 py-2 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-dark-900 dark:text-white mb-2">Silk Evening Dress</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Elegant silk dress perfect for special occasions</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-bold text-brand-600">$299</span>
+                        <div class="flex items-center">
+                            <div class="flex text-yellow-400">
+                                ★★★★★
+                            </div>
+                            <span class="text-sm text-gray-500 ml-1">(47)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 2 -->
+            <div class="group bg-white dark:bg-dark-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Designer Blazer" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-4 right-4">
+                        <button class="w-10 h-10 bg-white/90 dark:bg-dark-800/90 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors duration-200">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">Sale</span>
+                    </div>
+                    <div class="absolute inset-0 bg-dark-900/0 group-hover:bg-dark-900/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <button class="bg-white text-dark-900 px-6 py-2 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-dark-900 dark:text-white mb-2">Tailored Blazer</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Professional blazer with modern cut</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl font-bold text-brand-600">$189</span>
+                            <span class="text-lg text-gray-400 line-through">$259</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="flex text-yellow-400">
+                                ★★★★★
+                            </div>
+                            <span class="text-sm text-gray-500 ml-1">(32)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 3 -->
+            <div class="group bg-white dark:bg-dark-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Designer Handbag" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-4 right-4">
+                        <button class="w-10 h-10 bg-white/90 dark:bg-dark-800/90 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors duration-200">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="absolute inset-0 bg-dark-900/0 group-hover:bg-dark-900/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <button class="bg-white text-dark-900 px-6 py-2 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-dark-900 dark:text-white mb-2">Leather Handbag</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Premium leather with gold accents</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-bold text-brand-600">$459</span>
+                        <div class="flex items-center">
+                            <div class="flex text-yellow-400">
+                                ★★★★★
+                            </div>
+                            <span class="text-sm text-gray-500 ml-1">(89)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 4 -->
+            <div class="group bg-white dark:bg-dark-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Designer Shoes" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-4 right-4">
+                        <button class="w-10 h-10 bg-white/90 dark:bg-dark-800/90 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors duration-200">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">New</span>
+                    </div>
+                    <div class="absolute inset-0 bg-dark-900/0 group-hover:bg-dark-900/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <button class="bg-white text-dark-900 px-6 py-2 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-dark-900 dark:text-white mb-2">Designer Heels</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Comfortable luxury heels for any occasion</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-bold text-brand-600">$329</span>
+                        <div class="flex items-center">
+                            <div class="flex text-yellow-400">
+                                ★★★★★
+                            </div>
+                            <span class="text-sm text-gray-500 ml-1">(23)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{% url 'catalog:products' %}" 
+               class="inline-block bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105">
+                View All Products
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Brand Story -->
+<section class="py-24 bg-gray-50 dark:bg-dark-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-dark-900 dark:text-white mb-6">
+                    Crafting Fashion Excellence Since 2015
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-6">
+                    Chaze Fashion represents the pinnacle of contemporary design, where traditional craftsmanship meets modern innovation. Each piece in our collection tells a story of meticulous attention to detail and unwavering commitment to quality.
+                </p>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                    Our designers travel the world seeking inspiration from diverse cultures, architectural marvels, and natural wonders to create pieces that transcend seasonal trends and become timeless treasures in your wardrobe.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-3 rounded-full font-semibold transition-colors duration-200">
+                        Our Story
+                    </a>
+                    <a href="#" class="border-2 border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-200">
+                        Design Process
+                    </a>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Fashion Atelier" 
+                         class="w-full rounded-2xl shadow-2xl">
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-600 rounded-2xl flex items-center justify-center animate-float">
+                        <div class="text-center text-white">
+                            <div class="text-2xl font-bold">9+</div>
+                            <div class="text-sm">Years</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-24 bg-gradient-to-r from-brand-600 to-brand-700">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+            Stay in Fashion Loop
+        </h2>
+        <p class="text-xl text-brand-100 mb-8">
+            Be the first to know about new collections, exclusive offers, and fashion insights
+        </p>
+        <form class="max-w-md mx-auto">
+            <div class="flex gap-4">
+                <input type="email" 
+                       placeholder="Enter your email address" 
+                       class="flex-1 px-6 py-4 rounded-full border-0 focus:outline-none focus:ring-4 focus:ring-brand-300 text-dark-900">
+                <button type="submit" 
+                        class="bg-dark-900 hover:bg-dark-800 text-white px-8 py-4 rounded-full font-semibold transition-colors duration-200 whitespace-nowrap">
+                    Subscribe
+                </button>
+            </div>
+        </form>
+        <p class="text-brand-200 text-sm mt-4">
+            We respect your privacy. Unsubscribe at any time.
+        </p>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Animate elements on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-slide-up');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
+    
+    // Product card interactions
+    document.querySelectorAll('.group').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-8px)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
+</script>
+
+<style>
+    @keyframes slow-zoom {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.05); }
+    }
+    
+    .animate-slow-zoom {
+        animation: slow-zoom 20s ease-in-out infinite alternate;
+    }
+    
+    .animation-delay-200 {
+        animation-delay: 0.2s;
+    }
+    
+    .animation-delay-400 {
+        animation-delay: 0.4s;
+    }
+    
+    .aspect-w-4 {
+        position: relative;
+        padding-bottom: 125%; /* 4:5 aspect ratio */
+    }
+    
+    .aspect-w-4 > * {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+{% endblock %}

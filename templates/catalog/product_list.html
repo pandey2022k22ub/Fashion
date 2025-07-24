@@ -1,0 +1,322 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Collections - Chaze Fashion{% endblock %}
+
+{% block content %}
+<section class="relative py-24 bg-gradient-to-br from-dark-900 via-dark-800 to-brand-900">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl md:text-6xl font-serif font-bold text-white mb-6">
+            Exclusive Collections
+        </h1>
+        <p class="text-xl text-gray-200 max-w-2xl mx-auto">
+            Discover our curated selection of premium fashion pieces designed for the discerning individual
+        </p>
+    </div>
+</section>
+
+<section class="sticky top-16 lg:top-20 z-40 bg-white/95 dark:bg-dark-900/95 backdrop-blur-md border-b border-gray-200 dark:border-dark-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div class="flex items-center gap-4">
+                <button id="filterToggle" class="lg:hidden bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"></path>
+                    </svg>
+                    Filters
+                </button>
+                
+                <div class="flex-1 max-w-md">
+                    <div class="relative">
+                        <input type="text" 
+                               placeholder="Search products..." 
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white dark:bg-dark-800 text-dark-900 dark:text-white">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <select class="appearance-none bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 rounded-lg px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-brand-500 text-dark-900 dark:text-white">
+                        <option>Sort by: Featured</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Newest First</option>
+                        <option>Best Selling</option>
+                        <option>Customer Rating</option>
+                    </select>
+                    <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                
+                <div class="hidden sm:flex bg-gray-100 dark:bg-dark-800 rounded-lg p-1">
+                    <button id="gridView" class="p-2 rounded-md bg-brand-600 text-white transition-colors duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                        </svg>
+                    </button>
+                    <button id="listView" class="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex gap-8">
+        <aside id="filterSidebar" class="hidden lg:block w-80 flex-shrink-0">
+            <div class="sticky top-40 space-y-8">
+                <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-lg font-semibold text-dark-900 dark:text-white mb-4">Categories</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                            <span class="ml-3 text-gray-700 dark:text-gray-300">Dresses (127)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                            <span class="ml-3 text-gray-700 dark:text-gray-300">Blazers (89)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                            <span class="ml-3 text-gray-700 dark:text-gray-300">Accessories (156)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                            <span class="ml-3 text-gray-700 dark:text-gray-300">Shoes (94)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                            <span class="ml-3 text-gray-700 dark:text-gray-300">Bags (67)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-lg font-semibold text-dark-900 dark:text-white mb-4">Price Range</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <input type="number" placeholder="Min" class="flex-1 px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white dark:bg-dark-700 text-dark-900 dark:text-white">
+                            <span class="text-gray-500">-</span>
+                            <input type="number" placeholder="Max" class="flex-1 px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white dark:bg-dark-700 text-dark-900 dark:text-white">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-brand-600 focus:ring-brand-500">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300">Under $100</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-brand-600 focus:ring-brand-500">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300">$100 - $300</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-brand-600 focus:ring-brand-500">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300">$300 - $500</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="price" class="text-brand-600 focus:ring-brand-500">
+                                <span class="ml-3 text-gray-700 dark:text-gray-300">Over $500</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-lg font-semibold text-dark-900 dark:text-white mb-4">Colors</h3>
+                    <div class="grid grid-cols-6 gap-3">
+                        <button class="w-8 h-8 rounded-full bg-black border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-white border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-red-500 border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-blue-500 border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-green-500 border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-yellow-500 border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-purple-500 border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-pink-500 border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-gray-500 border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-brown-500 border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-orange-500 border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                        <button class="w-8 h-8 rounded-full bg-indigo-500 border-2 border-gray-300 hover:border-brand-600 focus:outline-none focus:border-brand-600"></button>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-lg font-semibold text-dark-900 dark:text-white mb-4">Sizes</h3>
+                    <div class="grid grid-cols-4 gap-2">
+                        <button class="px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg text-center hover:border-brand-600 hover:text-brand-600 focus:outline-none focus:border-brand-600 focus:text-brand-600 transition-colors duration-200">XS</button>
+                        <button class="px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg text-center hover:border-brand-600 hover:text-brand-600 focus:outline-none focus:border-brand-600 focus:text-brand-600 transition-colors duration-200">S</button>
+                        <button class="px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg text-center hover:border-brand-600 hover:text-brand-600 focus:outline-none focus:border-brand-600 focus:text-brand-600 transition-colors duration-200">M</button>
+                        <button class="px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg text-center hover:border-brand-600 hover:text-brand-600 focus:outline-none focus:border-brand-600 focus:text-brand-600 transition-colors duration-200">L</button>
+                        <button class="px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg text-center hover:border-brand-600 hover:text-brand-600 focus:outline-none focus:border-brand-600 focus:text-brand-600 transition-colors duration-200">XL</button>
+                        <button class="px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg text-center hover:border-brand-600 hover:text-brand-600 focus:outline-none focus:border-brand-600 focus:text-brand-600 transition-colors duration-200">XXL</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-dark-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-lg font-semibold text-dark-900 dark:text-white mb-4">Customer Rating</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                            <div class="ml-3 flex items-center">
+                                <div class="flex text-yellow-400">★★★★★</div>
+                                <span class="ml-2 text-gray-700 dark:text-gray-300">(128)</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                            <div class="ml-3 flex items-center">
+                                <div class="flex text-yellow-400">★★★★☆</div>
+                                <span class="ml-2 text-gray-700 dark:text-gray-300">(89)</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                            <div class="ml-3 flex items-center">
+                                <div class="flex text-yellow-400">★★★☆☆</div>
+                                <span class="ml-2 text-gray-700 dark:text-gray-300">(45)</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-gray-100 dark:bg-dark-700 hover:bg-gray-200 dark:hover:bg-dark-600 text-dark-900 dark:text-white px-6 py-3 rounded-xl font-medium transition-colors duration-200">
+                    Clear All Filters
+                </button>
+            </div>
+        </aside>
+        
+        <main class="flex-1">
+            <div class="flex justify-between items-center mb-8">
+                <p class="text-gray-600 dark:text-gray-300">
+                    Showing <span class="font-semibold">1-24</span> of <span class="font-semibold">247</span> products
+                </p>
+                <div class="hidden sm:block text-sm text-gray-500 dark:text-gray-400">
+                    Updated 2 minutes ago
+                </div>
+            </div>
+            
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group bg-white dark:bg-dark-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Designer Dress" 
+                             class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">30% OFF</span>
+                        </div>
+                        <div class="absolute top-4 right-4 space-y-2">
+                            <button class="w-10 h-10 bg-white/90 dark:bg-dark-800/90 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-all duration-200 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                            <button class="w-10 h-10 bg-white/90 dark:bg-dark-800/90 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-all duration-200 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 delay-75">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="absolute inset-0 bg-dark-900/0 group-hover:bg-dark-900/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <button class="bg-white text-dark-900 px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:bg-brand-600 hover:text-white">
+                                Quick Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="text-lg font-semibold text-dark-900 dark:text-white group-hover:text-brand-600 transition-colors duration-200">
+                                Elegant Evening Dress
+                            </h3>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                                <span class="text-sm text-gray-500 ml-1">(24)</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Premium silk with intricate embroidery</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-2xl font-bold text-brand-600">$209</span>
+                                <span class="text-lg text-gray-400 line-through">$299</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="w-4 h-4 rounded-full bg-black border border-gray-300"></span>
+                                <span class="w-4 h-4 rounded-full bg-red-500 border border-gray-300"></span>
+                                <span class="w-4 h-4 rounded-full bg-blue-500 border border-gray-300"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group bg-white dark:bg-dark-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Designer Blazer" 
+                             class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">New</span>
+                        </div>
+                        <div class="absolute top-4 right-4 space-y-2">
+                            <button class="w-10 h-10 bg-white/90 dark:bg-dark-800/90 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-all duration-200 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                            </button>
+                            <button class="w-10 h-10 bg-white/90 dark:bg-dark-800/90 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-all duration-200 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 delay-75">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="absolute inset-0 bg-dark-900/0 group-hover:bg-dark-900/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <button class="bg-white text-dark-900 px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 hover:bg-brand-600 hover:text-white">
+                                Quick Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-2">
+                            <h3 class="text-lg font-semibold text-dark-900 dark:text-white group-hover:text-brand-600 transition-colors duration-200">
+                                Professional Blazer
+                            </h3>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 text-sm">★★★★☆</div>
+                                <span class="text-sm text-gray-500 ml-1">(18)</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Tailored fit with premium wool blend</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-2xl font-bold text-brand-600">$189</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="w-4 h-4 rounded-full bg-gray-800 border border-gray-300"></span>
+                                <span class="w-4 h-4 rounded-full bg-blue-900 border border-gray-300"></span>
+                                <span class="w-4 h-4 rounded-full bg-brown-600 border border-gray-300"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                </div>
+            
+            <div class="mt-16 text-center">
+                <button class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 inline-flex items-center gap-3">
+                    Load More Products
+                    <svg class="w-5 h-5 animate-spin hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                </button>
+            </div>
+        </main>
+    </div>
+</div>
+
+{% endblock %}
